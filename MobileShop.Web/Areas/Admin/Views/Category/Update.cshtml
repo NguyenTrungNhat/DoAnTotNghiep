@@ -1,0 +1,25 @@
+﻿@model MobileShop.Core.Models.Category
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<partial name="_AlertNoti" />
+<div class="container mt-5">
+    <h2>Cập nhật danh mục</h2>
+    <form action="Update" method="post" enctype="multipart/form-data">
+        <input type="text" name="CategoryId" value="@Model.CategoryId" hidden/>
+        <div class="form-group">
+            <label for="CategoryName">Tên danh mục</label>
+            <input type="text" class="form-control" id="CategoryName" name="CategoryName" value="@Model.CategoryName">
+        </div>
+        <div class="form-group">
+            <label for="Description">Mô tả</label>
+            <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description">
+        </div>
+        <!-- Add more form groups for other properties -->
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+

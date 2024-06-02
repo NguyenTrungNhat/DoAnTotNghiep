@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MobileShop.Web.Areas.Admin.Models.UserDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<partial name="_AlertNoti" />
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Tables</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Người dùng</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-body">
+            <a class="btn btn-info btn-lg" href="/admin/users/create">Thêm mới</a>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Thông tin tất cả người dùng
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Tài khoản</th>
+                        <th>Email</th>
+                        <th>Loại tài khoản</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.Role</td>
+                            <td style="text-align: center;">
+                                <a class="btn btn-warning" href="/admin/users/update/@item.Id">Update</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

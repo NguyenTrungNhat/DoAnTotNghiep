@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MobileShop.Core.Models.Order>
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<partial name="_AlertNoti" />
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Tables</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Đơn hàng</li>
+    </ol>
+    <div class="card mb-4">
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Thông tin tất cả đơn hàng
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Mã ĐH</th>
+                        <th>Người đặt</th>
+                        <th>Ngày đặt</th>
+                        <th>Địa chỉ</th>
+                        <th>Ghi chú</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var user = await UserManager.FindByIdAsync(item.UserId);
+                        <tr>
+                            <td>@item.OrderId</td>
+                            <td>@user.UserName</td>
+                            <td>@item.DateOrder</td>
+                            <td>@item.Address</td>
+                            <td>@item.Notes</td>
+                            <td>@item.TotalPrice</td>
+                            <td>@item.OrderStatus</td>
+                            <td style="text-align: center;">
+                                @if(@item.OrderStatus == "Đang giao hàng")
+                                {
+                                    <a class="btn btn-warning" href="/admin/orders/confirm/@item.OrderId">Xác nhận</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

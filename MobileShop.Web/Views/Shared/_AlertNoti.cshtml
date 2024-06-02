@@ -1,0 +1,17 @@
+﻿@if (TempData["SuccessMessage"] != null)
+{
+    <div id="autoHideAlert" class="alert alert-success" role="alert" style="position: fixed; bottom: 50px; right: 10px">
+        @TempData["SuccessMessage"]
+    </div>
+    <script>
+        $(function () {
+            console.log("ready!");
+        });
+        $(document).ready(function () {
+            // Auto-hide the alert after 2 seconds
+            setTimeout(function () {
+                $("#autoHideAlert").alert("close");
+            }, 5000); // 2 seconds
+        });
+    </script>
+}

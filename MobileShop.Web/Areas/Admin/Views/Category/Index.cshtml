@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MobileShop.Core.Models.Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<partial name="_AlertNoti" />
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Tables</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Sản phẩm</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-body">
+            <a class="btn btn-info btn-lg" href="/admin/category/create">Thêm danh mục</a>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Thông tin tất cả các danh mục
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Mã NSX</th>
+                        <th>Tên NSX</th>
+                        <th>Mô tả</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CategoryId</td>
+                            <td>@item.CategoryName</td>
+                            <td>@item.Description</td>
+                            <td style="text-align: center;">
+                                <a class="btn btn-warning" href="/admin/category/update/@item.CategoryId">Update</a>
+                            </td>
+                            <td style="text-align: center;">
+                                <a onclick="return confirm('Bạn có chắc muốn xóa')" class="btn btn-danger" href="/admin/category/delete/@item.CategoryId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

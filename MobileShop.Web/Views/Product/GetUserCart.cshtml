@@ -1,0 +1,190 @@
+﻿@model IEnumerable<MobileShop.Core.Models.UserCart>
+
+@{
+    decimal totalMoney = Model.Sum(x => x.Subtotal);
+}
+<partial name="_AlertNoti" />
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Thông tin giỏ hàng</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <section class="vh-100" style=" height: 700px; margin-top: 100;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card mb-4">
+                    @if(Model.Count() == 0)
+                    {
+                        <p>Giỏ hàng trống</p>
+                    }
+                    else
+                    {
+                    <table border="1" style="min-height: 500px;">
+                        <tr>
+                            <th style="width: 200; text-align: center;">Hình ảnh</th>
+                            <th style="width: 200; text-align: center;">Tên sản phẩm</th>
+                            <th style="width: 200; text-align: center;">Số lượng</th>
+                            <th style="width: 200; text-align: center;">Đơn giá</th>
+                            <th style="width: 200; text-align: center;">Thành tiền</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td style="width: 200;">
+                                    <img style="text-align: center;" src="~/assets/images/@item.Image" height="100" width="100">
+                            </td>
+                            <td style="width: 200;">@item.ProductName</td>
+                            <td style="width: 200; text-align: center;">@item.Quantity</td>
+                            <td style="width: 200; text-align: center;">@item.Price.ToString("C2")</td>
+                                    <td style="width: 200; text-align: center;">@item.Subtotal.ToString("C2")</td>
+                        </tr>
+                        }
+                        <tr>
+                            <td colspan="4"><b style="margin-right: 100px;">Tổng tiền</b></td>
+                                <td style="width: 200; text-align: center;">@totalMoney.ToString("C2")</td>
+                        </tr>
+                    </table>
+                    }
+                    <div class="d-flex justify-content-end">
+                        <a href="/Product/DestroyCart" type="button" class="btn btn-light btn-lg me-2">Xóa tất cả giỏ hàng</a>
+                        
+                        <form action="/paymen/payment" method="post">
+                            <input name="totalMoney" type="number" value="@totalMoney" hidden />
+                            <select name="pthuc" class="btn btn-light btn-lg me-2">
+                                <option value="VNPAYQR">Thanh toán quét mã QR</option>
+                                <option value="VNBANK">Thẻ thanh toán nội địa</option>
+                                <option value="INTCARD">Thẻ thanh toán quốc tế</option>
+                            </select>
+            
+                            <input type="submit" class="btn btn-primary btn-lg" value="Thanh toán" />
+                        </form>
+                    </div>
+ *@
+
+
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h1 class="fw-bold mb-0 text-black">Giỏ Hàng</h1>
+                  </div>
+                  <hr class="my-4">
+                  @if(Model.Count() == 0)
+                    {
+                        <p>Giỏ hàng trống</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                            <div class="col-md-2 col-lg-2 col-xl-2">
+                              <img
+                                src="~/assets/images/@item.Image"
+                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                      <h6 class="text-black mb-0">@item.ProductName</h6>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+@*                               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                <i class="fas fa-minus"></i>
+                              </button> *@
+                               <a href="/Product/ProductDown/@item.ProductId" >
+                              <button class="btn btn-link px-2">
+                                        <i class="fas fa-minus"></i>
+                              </button>
+                              </a>
+
+                                      <input id="form1" min="0" name="quantity" value="@item.Quantity" type="number"
+                                class="form-control form-control-sm"  />
+
+@*                               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                <i class="fas fa-plus"></i>
+                              </button> *@
+                               <a href="/Product/ProductUp/@item.ProductId" >
+                              <button class="btn btn-link px-2">
+                                <i class="fas fa-plus"></i>
+                              </button>
+                              </a>
+
+                            </div>
+                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                              <h6 class="mb-0">@((item.Price*item.Quantity).ToString("C2"))</h6>
+                            </div>
+                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                      <a href="/Product/ProductRemove/@item.ProductId" class="text-muted"><i class="fas fa-times"></i></a>
+                            </div>
+                          </div>
+                        }
+                    
+                  }
+                  <hr class="my-4">
+                  <div class="pt-5">
+                    <h6 class="mb-0"><a href="#!" class="text-body"><i
+                          class="fas fa-long-arrow-alt-left me-2"></i><a href="/Product/">Back to shop</a></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 bg-grey">
+                <div class="p-5">
+                  <h3 class="fw-bold mb-5 mt-2 pt-1">Thanh Toán</h3>
+                  <hr class="my-4">
+
+       
+
+                  <hr class="my-4">
+
+                  <div class="d-flex justify-content-between mb-5">
+                    <h5 class="text-uppercase">Tổng tiền</h5>
+                    <h5>@totalMoney.ToString("C2")</h5>
+                  </div>
+
+@*                   <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block btn-lg"
+                    data-mdb-ripple-color="dark">Register</button> *@
+                    <button type="button" class="btn btn-dark btn-block btn-lg"><a href="/Product/DestroyCart" style="color:white;">Xóa tất cả giỏ hàng</a></button>
+
+                        <form action="/paymen/payment" method="post">
+                            <input name="totalMoney" type="number" value="@totalMoney" hidden />
+                            <select name="pthuc" class="btn btn-light btn-lg me-2">
+                                <option value="VNPAYQR">Thanh toán quét mã QR</option>
+                                <option value="VNBANK">Thẻ thanh toán nội địa</option>
+                                <option value="INTCARD">Thẻ thanh toán quốc tế</option>
+                            </select>
+
+                            <input type="submit" class="btn btn-primary btn-lg" value="Thanh toán" />
+                        </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+@section Scripts2 {
+    <script language="text/javascript">
+        function handleInputChange() {
+              const inputValue = document.getElementById('form1').value;
+          console.log('Input value changed to:', inputValue);
+        }
+    </script>
+
+}

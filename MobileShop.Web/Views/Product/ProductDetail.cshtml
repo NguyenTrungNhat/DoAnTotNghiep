@@ -1,0 +1,111 @@
+﻿@model MobileShop.Core.Models.Product
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<partial name="_AlertNoti" />
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>
+                    @Model.Price.ToString("C2")<sup>VND</sup>
+                </h1>
+                <span>
+                    Khuyến mãi lớn nhất trong năm
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div>
+                    <img src="~/assets/images/@Model.Image" alt="" class="img-fluid wc-image" height="800" width="500">
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="sidebar-item recent-posts">
+                    <div class="sidebar-heading">
+                        <h4>Thông tin chi tiết sản phẩm</h4>
+                    </div>
+
+                    <div class="content">
+                        </br>
+                        <table border="1px">
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Tên sản phẩm </td>
+                                <td style="width: 200px; text-align: center;">@Model.ProductName</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Kích thước </td>
+                                <td style="width: 200px; text-align: center;">@Model.SizeScreen</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Trọng lượng</td>
+                                <td style="width: 200px; text-align: center;">@Model.Weight</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Camera </td>
+                                <td style="width: 200px; text-align: center;">@Model.Camera</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Ram </td>
+                                <td style="width: 200px; text-align: center;">@Model.RAM</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Sim </td>
+                                <td style="width: 200px; text-align: center;">@Model.Sim</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Pin</td>
+                                <td style="width: 200px; text-align: center;">@Model.Battery</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Bộ nhớ </td>
+                                <td style="width: 200px; text-align: center;">@Model.Memory</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Hệ điều hành </td>
+                                <td style="width: 200px; text-align: center;">@Model.OS</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Bảo hành </td>
+                                <td style="width: 200px; text-align: center;">@Model.BaoHanh</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: center;">Phụ kiện </td>
+                                <td style="width: 200px; text-align: center;">@Model.PhuKien</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <a href="/Product/AddProductToCart/@Model.ProductId" class="filled-button">Mua hàng</a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <style>
+        table, tr, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>

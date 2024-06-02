@@ -1,0 +1,77 @@
+﻿@using MobileShop.Core.Repositories.IRepository;
+@inject IUnitOfWork unitOfWork
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var category = await unitOfWork.CategoryRepository.GetAllAsync();
+    SelectList listItems = new SelectList(category, "CategoryId", "CategoryName");
+}
+<partial name="_AlertNoti" />
+<div class="container mt-5">
+    <h2>Thêm sản phẩm</h2>
+    <form action="Create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" id="productName" name="productName">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" name="price">
+        </div>
+        <div class="form-group">
+            <label for="price">Số Lượng</label>
+            <input type="number" class="form-control" id="Quantity" name="Quantity">
+        </div>
+        <div class="form-group">
+            <label for="price">Kích thước màn hình</label>
+            <input type="text" class="form-control" id="SizeScreen" name="SizeScreen">
+        </div>
+        <div class="form-group">
+            <label for="price">Trọng lượng</label>
+            <input type="text" class="form-control" id="Weight" name="Weight">
+        </div>
+        <div class="form-group">
+            <label for="price">Camera</label>
+            <input type="text" class="form-control" id="Camera" name="Camera">
+        </div>
+        <div class="form-group">
+            <label for="price">Bộ nhớ RAM</label>
+            <input type="text" class="form-control" id="Ram" name="Ram">
+        </div>
+        <div class="form-group">
+            <label for="price">Dung lượng</label>
+            <input type="text" class="form-control" id="Memory" name="Memory">
+        </div>
+        <div class="form-group">
+            <label for="price">Hệ điều hành</label>
+            <input type="text" class="form-control" id="OS" name="OS">
+        </div>
+        <div class="form-group">
+            <label for="price">Dung lượng pin</label>
+            <input type="text" class="form-control" id="Battery" name="Battery">
+        </div>
+        <div class="form-group">
+            <label for="price">Số Sim</label>
+            <input type="text" class="form-control" id="Sim" name="Sim">
+        </div>
+        <div class="form-group">
+            <label for="price">Phụ kiện</label>
+            <input type="text" class="form-control" id="Phukien" name="PhuKien">
+        </div>
+        <div class="form-group">
+            <label for="price">Bảo hành</label>
+            <input type="text" class="form-control" id="BaoHanh" name="BaoHanh">
+        </div>
+        <div class="form-group">
+            <label for="price">Hình ảnh</label>
+            <input type="file" class="form-control" id="image" name="image">
+        </div>
+        <div class="form-group">
+            <label for="price">Nhà sản xuất</label> <br />
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="CategoryId" name="CategoryId" asp-items="listItems"></select>
+        </div>
+        <!-- Add more form groups for other properties -->
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

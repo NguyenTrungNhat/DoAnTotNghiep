@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MobileShop.Core.Models.Order>
+
+<partial name="_AlertNoti" />
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Lịch sử mua hàng</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+                        <th>Ngày đặt</th>
+                        <th>Địa chỉ</th>
+                        <th>Ghi chú</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Sample purchase history data -->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DateOrder</td>
+                <td>@item.Address</td>
+                <td>@item.Notes</td>
+                <td>@item.TotalPrice</td>
+                <td>@item.OrderStatus</td>
+                <td style="text-align: center;">
+                               <a class="btn btn-warning" href="/product/cancel/@item.OrderId">Hủy đơn</a>
+                </td>
+            </tr>
+        }
+        <!-- Add more rows for additional purchases -->
+    </tbody>
+</table>
