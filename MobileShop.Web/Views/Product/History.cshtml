@@ -18,7 +18,7 @@
                         <th>Ghi chú</th>
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
-                        <th>Hành động</th>
+                        <th style="padding-left: 10rem;">Hành động</th>
         </tr>
     </thead>
     <tbody>
@@ -29,10 +29,19 @@
                 <td>@item.DateOrder</td>
                 <td>@item.Address</td>
                 <td>@item.Notes</td>
-                <td>@item.TotalPrice</td>
+                <td>@item.TotalPrice.ToString("C2")</td>
                 <td>@item.OrderStatus</td>
+
                 <td style="text-align: center;">
-                               <a class="btn btn-warning" href="/product/cancel/@item.OrderId">Hủy đơn</a>
+                    @if(@item.OrderStatus == "Thành công" || @item.OrderStatus == "Đã hủy")
+                    {
+                    }
+                    else if (@item.OrderStatus == "Đang giao hàng")
+                    {
+                         <a class="btn btn-success" href="/product/ConfirmShip/@item.OrderId">Đã nhận hàng</a>
+                         <a class="btn btn-danger" href="/product/Cancel/@item.OrderId">Hủy đơn</a>
+                    }
+
                 </td>
             </tr>
         }

@@ -42,12 +42,16 @@
                             <td>@item.DateOrder</td>
                             <td>@item.Address</td>
                             <td>@item.Notes</td>
-                            <td>@item.TotalPrice</td>
+                                <td>@item.TotalPrice.ToString("C2")</td>
                             <td>@item.OrderStatus</td>
                             <td style="text-align: center;">
-                                @if(@item.OrderStatus == "Đang giao hàng")
+                                @if(@item.OrderStatus == "Đang xử lý")
                                 {
-                                    <a class="btn btn-warning" href="/admin/orders/confirm/@item.OrderId">Xác nhận</a>
+                                    <a class="btn btn-warning" href="/admin/orders/Shipping/@item.OrderId">Giao hàng</a>
+                                }
+                                @if(@item.OrderStatus == "Đã nhận hàng")
+                                {
+                                    <a class="btn btn-warning" href="/admin/orders/Confirm/@item.OrderId">Xác nhận</a>
                                 }
                             </td>
                         </tr>

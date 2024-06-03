@@ -23,7 +23,7 @@ namespace MobileShop.Web.Areas.Admin.Controllers
         {
             if(start == null || end == null)
             {
-                 start = new DateTime(2023, 5, 1);
+                 start = new DateTime(2024, 1, 1);
                  end = DateTime.Now;
             }    
             var moneyData = await unitOfWork.OrderRepository.GetReportMoney(start, end);
@@ -35,7 +35,7 @@ namespace MobileShop.Web.Areas.Admin.Controllers
         {
             if (start == null || end == null)
             {
-                start = new DateTime(2023, 5, 1);
+                start = new DateTime(2024, 1, 1);
                 end = DateTime.Now;
             }
 

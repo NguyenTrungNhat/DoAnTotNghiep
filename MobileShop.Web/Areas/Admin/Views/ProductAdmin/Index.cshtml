@@ -39,7 +39,7 @@
                     <tr>
                         <td>@item.ProductId</td>
                         <td>@item.ProductName</td>
-                        <td>@item.Price</td>
+                        <td>@item.Price.ToString("C2")</td>
                         <td>@item.Quantity</td>
                         <td style="text-align: center;">
                                 <a class="btn btn-warning" href="/admin/productadmin/update/@item.ProductId">Update</a>

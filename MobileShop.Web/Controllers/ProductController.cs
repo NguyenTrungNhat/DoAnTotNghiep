@@ -50,6 +50,11 @@ namespace MobileShop.Web.Controllers
                 if (userCartItem.ProductName == product.ProductName)
                 {
                     userCartItem.Quantity++;
+                    if(userCartItem.Quantity > product.Quantity)
+                    {
+                        TempData["SuccessMessage"] = "Số lượng hàng trong kho không đủ !";
+                        return RedirectToAction("~/product/");
+                    }
                     unitOfWork.SaveChange();
                     TempData["SuccessMessage"] = "Sản phẩm đã được thêm vào giỏ hàng";
                     return RedirectToAction("Index");
@@ -84,8 +89,13 @@ namespace MobileShop.Web.Controllers
                 if (userCartItem.ProductName == product.ProductName)
                 {
                     userCartItem.Quantity++;
+                    if (userCartItem.Quantity > product.Quantity)
+                    {
+                        TempData["SuccessMessage"] = "Số lượng hàng trong kho không đủ !";
+                        return RedirectToAction("GetUserCart");
+                    }
                     unitOfWork.SaveChange();
-                    TempData["SuccessMessage"] = "Sản phẩm đã được thêm vào giỏ hàng";
+                    TempData["SuccessMessage"] = "Cập nhật thành công";
                     return RedirectToAction("GetUserCart");
                 }
             }
@@ -107,8 +117,14 @@ namespace MobileShop.Web.Controllers
                 if (userCartItem.ProductName == product.ProductName)
                 {
                     userCartItem.Quantity--;
+                    if (userCartItem.Quantity == 0)
+                    {
+                        await unitOfWork.UserCartRepository.Deletesync(userCartItem);
+                        TempData["SuccessMessage"] = "Đã xóa sản phẩm khỏi giỏ hàng";
+                        return RedirectToAction("GetUserCart");
+                    }
                     unitOfWork.SaveChange();
-                    TempData["SuccessMessage"] = "Sản phẩm đã được thêm vào giỏ hàng";
+                    TempData["SuccessMessage"] = "Cập nhật thành công";
                     return RedirectToAction("GetUserCart");
                 }
             }
@@ -182,6 +198,16 @@ namespace MobileShop.Web.Controllers
             var order = await unitOfWork.OrderRepository.GetByIdAsync(id);
             order.OrderStatus = "Đã hủy";
             TempData["SuccessMessage"] = "Hủy đơn thành công";
+            unitOfWork.SaveChange();
+            return Redirect("/Product/History");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmShip(int id)
+        {
+            var order = await unitOfWork.OrderRepository.GetByIdAsync(id);
+            order.OrderStatus = "Đã nhận hàng";
+            TempData["SuccessMessage"] = "Đơn hàng được giao thành công";
             unitOfWork.SaveChange();
             return Redirect("/Product/History");
         }

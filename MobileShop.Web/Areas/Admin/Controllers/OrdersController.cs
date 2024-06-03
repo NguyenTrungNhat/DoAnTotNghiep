@@ -36,5 +36,15 @@ namespace MobileShop.Web.Areas.Admin.Controllers
             TempData["SuccessMessage"] = "Cập nhật thành công";
             return Redirect("/Admin/Orders");
         }
+
+        public async Task<IActionResult> Shipping(int id)
+        {
+            var order = await unitOfWork.OrderRepository.GetByIdAsync(id);
+            order.OrderStatus = "Đang giao hàng";
+            var orderDetail = unitOfWork.OrderDetailRepository.GetByWhereAsync(x => x.OrderId == order.OrderId).ToList();
+            unitOfWork.SaveChange();
+            TempData["SuccessMessage"] = "Cập nhật thành công";
+            return Redirect("/Admin/Orders");
+        }
     }
 }

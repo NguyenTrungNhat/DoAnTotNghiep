@@ -85,7 +85,7 @@ namespace MobileShop.Web.Controllers
                     Address = "Hưng Yên",
                     DateOrder = DateTime.Now,
                     TotalPrice = userCart.Sum(x => x.Subtotal),
-                    OrderStatus = "Đang giao hàng"
+                    OrderStatus = "Đang xử lý"
                 };
                 await unitOfWork.OrderRepository.CreateAsync(order);
                 foreach (var item in userCart)
@@ -98,9 +98,9 @@ namespace MobileShop.Web.Controllers
                         Quantity = item.Quantity
                     };
                     await unitOfWork.OrderDetailRepository.CreateAsync(detail);
-                    var product = await unitOfWork.ProductRepository.GetByIdAsync(item.ProductId);
-                    product.Quantity = product.Quantity - item.Quantity;
-                    unitOfWork.SaveChange();
+                    //var product = await unitOfWork.ProductRepository.GetByIdAsync(item.ProductId);
+                    //product.Quantity = product.Quantity - item.Quantity;
+                    //unitOfWork.SaveChange();
                 }
                 var allCart = await unitOfWork.UserCartRepository.GetAllAsync();
                 foreach (var item in allCart)

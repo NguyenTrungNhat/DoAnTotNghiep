@@ -79,6 +79,9 @@
                 <div class="p-5">
                   <div class="d-flex justify-content-between align-items-center mb-5">
                     <h1 class="fw-bold mb-0 text-black">Giỏ Hàng</h1>
+                    <div style="text-align: center;">
+                    <h6 class="mb-0"><a href="#!" class="text-body"><a href="~/product/History">Lịch Sử Mua Hàng</a></h6>
+                  </div>
                   </div>
                   <hr class="my-4">
                   @if(Model.Count() == 0)
@@ -136,17 +139,13 @@
                   <hr class="my-4">
                   <div class="pt-5">
                     <h6 class="mb-0"><a href="#!" class="text-body"><i
-                          class="fas fa-long-arrow-alt-left me-2"></i><a href="/Product/">Back to shop</a></h6>
+                          class="fas fa-long-arrow-alt-left me-2"></i><a href="/Product/">Trở về cửa hàng</a></h6>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 bg-grey">
                 <div class="p-5">
                   <h3 class="fw-bold mb-5 mt-2 pt-1">Thanh Toán</h3>
-                  <hr class="my-4">
-
-       
-
                   <hr class="my-4">
 
                   <div class="d-flex justify-content-between mb-5">
@@ -179,12 +178,3 @@
 </section>
 
 
-@section Scripts2 {
-    <script language="text/javascript">
-        function handleInputChange() {
-              const inputValue = document.getElementById('form1').value;
-          console.log('Input value changed to:', inputValue);
-        }
-    </script>
-
-}
