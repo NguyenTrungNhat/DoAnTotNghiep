@@ -1,0 +1,48 @@
+﻿@using MobileShop.Core.Repositories.IRepository;
+@model IEnumerable<MobileShop.Core.Models.OrderDetail>
+@inject IUnitOfWork unitOfWork
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<partial name="_AlertNoti" />
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Tables</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+    </ol>
+    <div class="card mb-4">
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Thông tin chi tiết đơn hàng
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Mã ĐH</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Địa chỉ</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var product = await unitOfWork.ProductRepository.GetByIdAsync(item.ProductId);
+                            <tr>
+                                <td>@item.OrderId</td>
+                                <td>@product.ProductName</td>
+                                    <td>@item.Price.ToString("C2")</td>
+                                <td>@item.Quantity</td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

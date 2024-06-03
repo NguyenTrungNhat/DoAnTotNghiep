@@ -30,6 +30,7 @@
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
                         <th></th>
+                        <th>Chi Tiết</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +43,7 @@
                             <td>@item.DateOrder</td>
                             <td>@item.Address</td>
                             <td>@item.Notes</td>
-                                <td>@item.TotalPrice.ToString("C2")</td>
+                            <td>@item.TotalPrice.ToString("C2")</td>
                             <td>@item.OrderStatus</td>
                             <td style="text-align: center;">
                                 @if(@item.OrderStatus == "Đang xử lý")
@@ -54,6 +55,7 @@
                                     <a class="btn btn-warning" href="/admin/orders/Confirm/@item.OrderId">Xác nhận</a>
                                 }
                             </td>
+                                        <td><a class="btn btn-warning" href="/admin/OrderDetail/GetOrder/@item.OrderId">Chi Tiết</a></td>
                         </tr>
                     }
                 </tbody>

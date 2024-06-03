@@ -1,4 +1,7 @@
-﻿@model MobileShop.Core.Models.Product
+﻿@{
+    ViewData["Title"] = "Chi tiết";
+}
+@model MobileShop.Core.Models.Product
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -20,92 +23,67 @@
     </div>
 </div>
 
-<div class="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div>
-                    <img src="~/assets/images/@Model.Image" alt="" class="img-fluid wc-image" height="800" width="500">
-                </div>
-            </div>
-
-            <div class="col-md-5">
-                <div class="sidebar-item recent-posts">
-                    <div class="sidebar-heading">
-                        <h4>Thông tin chi tiết sản phẩm</h4>
-                    </div>
-
-                    <div class="content">
-                        </br>
-                        <table border="1px">
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Tên sản phẩm </td>
-                                <td style="width: 200px; text-align: center;">@Model.ProductName</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Kích thước </td>
-                                <td style="width: 200px; text-align: center;">@Model.SizeScreen</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Trọng lượng</td>
-                                <td style="width: 200px; text-align: center;">@Model.Weight</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Camera </td>
-                                <td style="width: 200px; text-align: center;">@Model.Camera</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Ram </td>
-                                <td style="width: 200px; text-align: center;">@Model.RAM</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Sim </td>
-                                <td style="width: 200px; text-align: center;">@Model.Sim</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Pin</td>
-                                <td style="width: 200px; text-align: center;">@Model.Battery</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Bộ nhớ </td>
-                                <td style="width: 200px; text-align: center;">@Model.Memory</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Hệ điều hành </td>
-                                <td style="width: 200px; text-align: center;">@Model.OS</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Bảo hành </td>
-                                <td style="width: 200px; text-align: center;">@Model.BaoHanh</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 200px; text-align: center;">Phụ kiện </td>
-                                <td style="width: 200px; text-align: center;">@Model.PhuKien</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+ <div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
                 <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4"> 
+                                <img id="main-image" src="~/assets/images/@Model.Image" alt="" class="img-fluid wc-image" width="500px" /> 
+                             </div>
+                            <div class="thumbnail text-center"> 
+                                <img onclick="change_image(this)" src="~/assets/images/@Model.Image" alt="" class="img-fluid wc-image" width="140px"> 
+                                <img onclick="change_image(this)" src="~/assets/images/@Model.Image" alt="" class="img-fluid wc-image" width="140px"> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">  </div> 
+                            </div>
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">Thông tin chi tiết</span>
+                                <h5 class="text-uppercase">@Model.ProductName</h5>
+                            </div>
+                            <p class="about">
+                                - Màn hình : @Model.SizeScreen
+                            </p>
+                            <p class="about">
+                                - Trọng lượng : @Model.Weight
+                            </p>
+                            <p class="about">
+                                - Camera : @Model.Camera
+                            </p>
+                            <p class="about">
+                                - Ram : @Model.RAM
+                            </p>
+                            <p class="about">
+                                - Sim : @Model.Sim
+                            </p>
+                            <p class="about">
+                                - Dung lượng pin : @Model.Battery
+                            </p>
+                            <p class="about">
+                                - Phụ kiện : @Model.PhuKien
+                            </p>
+                            <p class="about">
+                                - Bảo hành : @Model.BaoHanh
+                            </p>
+                            <div class="sizes mt-5">
+                                <h6 class="text-uppercase">Bộ nhớ</h6> <label class="radio"> <input type="radio" name="size" value="S" checked> <span>128GB</span> </label> <label class="radio"> <input type="radio" name="size" value="M"> <span>256GB</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>512GB</span> </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>1TB</span> </label>
+                            </div>
+                            <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4"><a style="color:white;" href="/Product/AddProductToCart/@Model.ProductId" class="">Mua hàng</a></button> <i style="margin-left: 1rem;" class="fa fa-heart text-muted"></i> <i style="margin-left: 1rem;" class="fa fa-share-alt text-muted"></i> </div>
                         </div>
                     </div>
                 </div>
-                </br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <a href="/Product/AddProductToCart/@Model.ProductId" class="filled-button">Mua hàng</a>
-                        </div>
-                    </div>
-                </div>
-                <br>
             </div>
         </div>
     </div>
-    <style>
-        table, tr, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
+</div>
+
+
+<style>
+    body{}.card{border:none}.product{background-color: #eee}.brand{font-size: 13px}.act-price{color:red;font-weight: 700}.dis-price{text-decoration: line-through}.about{font-size: 14px}.color{margin-bottom:10px}label.radio{cursor: pointer}label.radio input{position: absolute;top: 0;left: 0;visibility: hidden;pointer-events: none}label.radio span{padding: 2px 9px;border: 2px solid #ff0000;display: inline-block;color: #ff0000;border-radius: 3px;text-transform: uppercase}label.radio input:checked+span{border-color: #ff0000;background-color: #ff0000;color: #fff}.btn-danger{background-color: #ff0000 !important;border-color: #ff0000 !important}.btn-danger:hover{background-color: #da0606 !important;border-color: #da0606 !important}.btn-danger:focus{box-shadow: none}.cart i{margin-right: 10px}
+</style>

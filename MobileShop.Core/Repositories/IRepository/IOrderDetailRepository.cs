@@ -9,5 +9,6 @@ namespace MobileShop.Core.Repositories.IRepository
 {
     public interface IOrderDetailRepository : IGenericRepository<OrderDetail>
     {
+        Task<List<OrderDetail>> GetByOrderId(int id);
     }
 }

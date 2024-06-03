@@ -1,4 +1,5 @@
-﻿using MobileShop.Core.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MobileShop.Core.Data;
 using MobileShop.Core.Models;
 using MobileShop.Core.Repositories.IRepository;
 using System;
@@ -16,6 +17,12 @@ namespace MobileShop.Core.Repositories.Repository
 
         public OrderDetailRepository(MobileShopDBContext context) : base(context)
         {
+        }
+
+        public async Task<List<OrderDetail>> GetByOrderId(int id)
+        {
+            var orderDetail = await entities.Where(x => x.OrderId == id).ToListAsync();
+            return orderDetail;
         }
     }
 }

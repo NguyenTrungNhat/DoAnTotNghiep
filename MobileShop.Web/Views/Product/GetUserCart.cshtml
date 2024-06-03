@@ -1,4 +1,7 @@
-﻿@model IEnumerable<MobileShop.Core.Models.UserCart>
+﻿@{
+    ViewData["Title"] = "Giỏ hàng";
+}
+@model IEnumerable<MobileShop.Core.Models.UserCart>
 
 @{
     decimal totalMoney = Model.Sum(x => x.Subtotal);
