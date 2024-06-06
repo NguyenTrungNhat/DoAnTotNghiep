@@ -32,6 +32,16 @@ namespace MobileShop.Core.Repositories.Repository
             return category.CategoryName;
         }
 
+        public async Task<List<Product>> SearchProductName(string key)
+        {
+            var products = new List<Product>();
+            if (!String.IsNullOrEmpty(key))
+            {
+                products = await entities.Where(x => x.ProductName.ToUpper().Contains(key.ToUpper())).ToListAsync();
+            }
+            return products;
+        }
+
         public List<DataPoint> GetReportProduct()
         {
             var listData = new List<DataPoint>();

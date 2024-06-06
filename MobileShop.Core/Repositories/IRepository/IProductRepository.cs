@@ -13,5 +13,7 @@ namespace MobileShop.Core.Repositories.IRepository
         Task<List<Product>> GetByCategoryId(int id);
         string GetCategoryName(int id);
         List<DataPoint> GetReportProduct();
+
+        Task<List<Product>> SearchProductName(string key);
     }
 }

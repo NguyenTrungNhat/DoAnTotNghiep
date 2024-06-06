@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Cửa hàng";
+}
+@model IEnumerable<MobileShop.Core.Models.Product>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<partial name="_AlertNoti" />
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Trang sản phẩm</h1>
+                <span>Giá rẻ nhất thị trường</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="services">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                    <div class="col-md-4">
+                        <div class="service-item">
+                            <a href="/Product/ProductDetail/@item.ProductId">
+                                <img src="~/assets/images/@item.Image" alt="" height="350" width="350">
+                            </a>
+                            <div class="down-content">
+                                <h4>@item.ProductName</h4>
+                                <div style="margin-bottom:10px;">
+                                    <span>
+                                    @item.Price.ToString("C2") <sup>VND</sup>
+                                    </span>
+                                </div>
+
+                                <p>@item.RAM</p>
+                                <p>@item.Memory</p>
+                                <a href="/Product/AddProductToCart/@item.ProductId" class="filled-button">Thêm vào giỏ hàng</a>
+                            </div>
+                        </div>
+
+                        <br>
+                    </div>
+            }
+        </div>
+    </div>
+</div>
+
